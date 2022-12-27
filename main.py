@@ -9,7 +9,6 @@ def save_pdf(content: bytes, filename: str, path: str) -> None:
     with open(f"{path}{filename}", "wb") as f:
         f.write(content)
 
-
 def get_links(query: str, results: int = 10, delay: int = 2) -> list[str]:
     dork = f"{query} filetype: pdf"
     return [
