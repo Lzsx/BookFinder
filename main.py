@@ -4,6 +4,7 @@ from io import BytesIO
 from PyPDF2 import PdfReader
 from rich import print
 from rich.console import Console
+from rich.prompt import IntPrompt
 
 console = Console()
 def save_pdf(content: bytes, filename: str, path: str) -> None:
@@ -51,17 +52,17 @@ def get_info(contents: list[bytes]) -> list[dict]:
 def main():
     book = console.input("[magenta]Which book are you looking for today:books:?[/]: ")
     print("\n")
-    with console.status("Searching for your books", spinner="moon"):
+    with console.status("Getting your books", spinner="moon"):
         links = get_links(query=book, results=10)
         bites = get_bytes(links)
         infos = get_info(bites)
     for index, info in enumerate(infos):
         print(f"{index}.")
         for k, v in info.items():
-            print(f"{k}: {v}")
+            print(f"[magenta]{k}[/]: [orange]{v}[/]")
         print("\n")
 
-    choose = int(input("Choose a pdf: "))
+    choose = IntPrompt.ask("Choose a pdf",default=0)
     content = bites[choose]
     choosed_name = infos[choose]["title"]
     save_pdf(content, f"{choosed_name}.pdf", "./")
