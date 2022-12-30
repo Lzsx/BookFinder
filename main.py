@@ -10,6 +10,7 @@ console = Console()
 def save_pdf(content: bytes, filename: str, path: str) -> None:
     with open(f"{path}{filename}", "wb") as f:
         f.write(content)
+    console.log(f"{filename} [green italic]Downloaded:cake:[/]")
 
 def get_links(query: str, results: int = 10, delay: int = 2) -> list[str]:
     dork = f"{query} filetype: pdf"
@@ -51,16 +52,15 @@ def get_info(contents: list[bytes]) -> list[dict]:
 
 def main():
     book = console.input("[magenta]Which book are you looking for today:books:?[/]: ")
-    print("\n")
     with console.status("Getting your books", spinner="moon"):
-        links = get_links(query=book, results=10)
+        links = get_links(query=book, results=4)
         bites = get_bytes(links)
         infos = get_info(bites)
     for index, info in enumerate(infos):
         print(f"{index}.")
         for k, v in info.items():
             print(f"[magenta]{k}[/]: [orange]{v}[/]")
-        print("\n")
+
 
     choose = IntPrompt.ask("Choose a pdf",default=0)
     content = bites[choose]
