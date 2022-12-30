@@ -67,5 +67,5 @@ def main():
     choosed_name = infos[choose]["title"]
     save_pdf(content, f"{choosed_name}.pdf", "./")
 
-
-main()
+if __name__ == "__main__":
+    main()
