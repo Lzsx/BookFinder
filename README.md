@@ -1,9 +1,11 @@
 # BookFinder :mag: :book:
- Ferramenta simples rápida para encontrar e baixar pdf de livros no google :books: :sparkles:
+ Ferramenta simples que utiliza google dorks para encontrar e baixar pdf de livros :books: :sparkles:
 
- ## Instalação
+ ## Instalação :arrow_heading_down:
  ```
  $ git clone https://github.com/Lzsx/BookFinder/tree/master
  $ cd BookFinder
  $ pip install -r requirements.txt
  ```
+ ## Showcase :camera:
+ ![showcase](./media/showcase.JPG)
